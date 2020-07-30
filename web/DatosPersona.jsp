@@ -8,6 +8,8 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Datos Persona</title>
         <link href="css/Estilosparatabla.css" rel="stylesheet" type="text/css"/>
+        <link href="css/estiloparaform.css" rel="stylesheet" type="text/css"/>
+         <link href="css/style.css" rel="stylesheet" type="text/css"/>
         <%!
             String consulta;
             String consulta2;
@@ -49,7 +51,7 @@
                     if (rs.next()) {
         %>
         <br>
-        <form name="EditarPersonaForm" action="DatosPersona.jsp" method="GET">
+        <form class="general" name="EditarPersonaForm" action="DatosPersona.jsp" method="GET">
             <table border="0" align="center">
                 <thead>
                     <tr>
@@ -98,7 +100,7 @@
                 }
             }else{
         %>
-        <form name="AgregarPersonaForm" action="DatosPersona.jsp" method="GET">
+        <form class="general" name="AgregarPersonaForm" action="DatosPersona.jsp" method="GET">
             <table border="0" align="center">
                 <thead>
                     <tr>
@@ -270,7 +272,7 @@
         </table>
         <br>
         <div align="center">
-            <a href="menu.jsp">Menu</a>
+            <a href="menu.jsp"><img  src="imagenes/flecha.png" width="100"></a>
         </div>
                     
         

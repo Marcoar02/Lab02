@@ -8,6 +8,8 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Datos Area</title>
         <link href="css/Estilosparatabla.css" rel="stylesheet" type="text/css"/>
+        <link href="css/estiloparaform.css" rel="stylesheet" type="text/css"/>
+         <link href="css/style.css" rel="stylesheet" type="text/css"/>
         <%!
             String consulta;
             String consulta2;
@@ -44,7 +46,7 @@
                     if (rs.next()) {
         %>
         <br>
-        <form name="EditarAreaForm" action="DatosArea.jsp" method="GET">
+        <form class="general" name="EditarAreaForm" action="DatosArea.jsp" method="GET">
             <table border="0" align="center">
                 <thead>
                     <tr>
@@ -77,7 +79,7 @@
                 }
             }else{
         %>
-        <form name="AgregarAreaForm" action="DatosArea.jsp" method="GET">
+        <form class="general" name="AgregarAreaForm" action="DatosArea.jsp" method="GET">
             <table border="0" align="center">
                 <thead>
                     <tr>
@@ -198,7 +200,7 @@
                         <% }else{                    
                         %>
                         
-                        <td><a href="DatosArea.jsp?f_accion=E&f_idarea=<%out.print(ide);%>"><img  src="imagenes/eliminar2.png" width="20"></a></td>                 
+                        <td><a href="DatosArea.jsp?f_accion=E&f_idarea=<%out.print(ide);%>"><img  src="imagenes/eliminar2.png" width="25"></a></td>                 
                     <%
                     }%>
                     <td><a href="DatosArea.jsp?f_accion=M1&f_idarea=<%out.print(ide);%>" ><img  src="imagenes/editar.png" width="30"></a></td>
@@ -214,7 +216,7 @@
         </table>
         <br>
         <div align="center">
-            <a href="menu.jsp">Menu</a>
+            <a href="menu.jsp"><img  src="imagenes/flecha.png" width="100"></a>
         </div>
                     
         
