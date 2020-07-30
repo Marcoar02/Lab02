@@ -35,10 +35,10 @@
                 s_idsugerencia = request.getParameter("f_idsugerencia");
                 
                 if(s_accion!=null && s_accion.equals("M1")){
-                    consulta = "    select Descripción, Idpersona, Idarea, Idrol, Estado  "
-                                + " from sugerencia "
-                                + " where"
-                                + " IdSugerencia = " + s_idsugerencia + "; ";
+                    consulta = "    select s.Descripción, p.Nombre, a.Nombre, r.Nombre, s.Estado  "
+                                + " from sugerencia s, persona p,area a, rol r "
+                                + " where s.Idpersona = p.IdPersona and s.Idarea = a.IdArea and s.Idrol = r.IdRol "
+                                + " and s.IdSugerencia = " + s_idsugerencia + "; ";
                     //out.print(consulta);
                     pst = cn.prepareStatement(consulta);
                     rs = pst.executeQuery();
@@ -60,19 +60,70 @@
                     </tr>
                     <tr>
                         <td>Idpersona:</td>
-                        <td><input type="text" name="f_persona" value="<% out.print(rs.getString(2)); %>" maxlength="40" size="20" /></td>
+                        
+                        <td><select name="f_persona" value="" >
+                              <%consulta = "    select  Nombre, IdPersona  "
+                                + " from   persona  "
+                                + "  ; ";
+
+                    //out.print(consulta);
+                    pst = cn.prepareStatement(consulta);
+                    rs = pst.executeQuery();
+                                while(rs.next()){%>
+                                    <option value="<% out.print(rs.getString(2)); %>"><%out.print(rs.getString(1));%></option><%
+                                }
+                            %>
+                        </select>
+                        </td>
                     </tr>
                     <tr>
                         <td>Idarea:</td>
-                        <td><input type="text" name="f_area" value="<% out.print(rs.getString(3)); %>" maxlength="8" size="8"/></td>
+                        
+                        <td><select name="f_area" value="" >
+                                <%consulta = "    select  Nombre, IdArea  "
+                                + " from   area  "
+                                + "  ; ";
+
+                    //out.print(consulta);
+                    pst = cn.prepareStatement(consulta);
+                    rs = pst.executeQuery();
+                    
+                    while(rs.next()){%>
+                    <option value="<% out.print(rs.getString(2)); %>"><% out.print(rs.getString(1)); %></option><%
+                                        
+                                }
+                            %>
+                        </select>
+                        </td>
                     </tr>
                     <tr>
                         <td>Idrol:</td>
-                        <td><input type="text" name="f_rol" value="<% out.print(rs.getString(4)); %>" maxlength="12" size="11"/></td>
+                        
+                        <td><select name="f_rol" value="" >
+                                <%consulta = "    select  Nombre, IdRol  "
+                                + " from   rol  "
+                                + "  ; ";
+
+                    //out.print(consulta);
+                    pst = cn.prepareStatement(consulta);
+                    rs = pst.executeQuery();
+                                while(rs.next()){%>
+                                    <option value="<% out.print(rs.getString(2)); %>"><%out.print(rs.getString(1));%></option><%
+                                }
+                            %>
+                        </select>
+                        </td>
                     </tr>
                     <tr>
-                        <td>Estado: </td>
-                        <td><input type="text" name="f_estado" value="<% out.print(rs.getString(5)); %>" maxlength="1" size="2"/></td>
+                        <td>Estado: </td><%consulta = "    select Estado  "
+                                + " from sugerencia;  ";
+
+                    //out.print(consulta);
+                    pst = cn.prepareStatement(consulta);
+                    rs = pst.executeQuery();
+                    if(rs.next()){%>
+                        <td><input type="text" name="f_estado" value="<% out.print(rs.getString(1)); %>" maxlength="1" size="2"/></td>
+                        <%};%>
                     </tr>
                     <tr align="center">
                         <td colspan="2">
@@ -86,8 +137,9 @@
 
         </form>
         <%
-                }
-            }else{
+                
+            }}else{
+                    
         %>
         <form class="general" name="AgregarSugerenciaForm" action="DatosSugerencia.jsp" method="GET">
             <table border="0" align="center">
@@ -100,19 +152,64 @@
                 <tbody>
                     <tr>
                         <td>Descripción: </td>
-                        <td><input type="text" name="f_descripcion" value="" maxlength="30" size="20" /></td>
+                        <td><input type="text" name="f_descripcion" value="" maxlength="40" size="40" /></td>
                     </tr>
                     <tr>
                         <td>Idpersona: </td>
-                        <td><input type="text" name="f_persona" value="" maxlength="40" size="20" /></td>
+                        
+                        <td><select name="f_persona" value="" >
+                                <%consulta = "    select  Nombre, IdPersona  "
+                                + " from   persona  "
+                                + "  ; ";
+
+                    //out.print(consulta);
+                    pst = cn.prepareStatement(consulta);
+                    rs = pst.executeQuery();
+                    
+                                while(rs.next()){%>
+                                    <option value="<% out.print(rs.getString(2)); %>"><%out.print(rs.getString(1));%></option><%
+                                }
+                            %>
+                        </select>
+                        </td>
                     </tr>
                     <tr>
                         <td>Idarea: </td>
-                        <td><input type="text" name="f_area" value="" maxlength="8" size="8"/></td>
+                        
+                        <td><select name="f_area" value="" >
+                                <%consulta = "    select  Nombre, IdArea  "
+                                + " from   area  "
+                                + "  ; ";
+
+                    //out.print(consulta);
+                    pst = cn.prepareStatement(consulta);
+                    rs = pst.executeQuery();
+                    
+                    while(rs.next()){%>
+                    <option value="<% out.print(rs.getString(2)); %>"><% out.print(rs.getString(1)); %></option><%
+                                        
+                                }
+                            %>
+                        </select>
+                        </td>
                     </tr>
                     <tr>
                         <td>Idrol: </td>
-                        <td><input type="text" name="f_rol" value="" maxlength="12" size="11"/></td>
+                        
+                        <td><select name="f_rol" value="" >
+                                <%consulta = "    select  Nombre, IdRol  "
+                                + " from   rol  "
+                                + "  ; ";
+
+                    //out.print(consulta);
+                    pst = cn.prepareStatement(consulta);
+                    rs = pst.executeQuery();
+                                while(rs.next()){%>
+                                    <option value="<% out.print(rs.getString(2)); %>"><%out.print(rs.getString(1));%></option><%
+                                }
+                            %>
+                        </select>
+                        </td>
                     </tr>
                     <tr>
                         <td>Estado: </td>
@@ -218,7 +315,7 @@
                     <%
                     }
             }catch(Exception e){
-                out.print("Error SQL");
+                out.print("Error SQL" + e);
             }
         
         %>
